@@ -4,8 +4,8 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var Post = require('./models/post');
 
-var {DEV,PROD} = require('./config/data');
-mongoose.connect(DEV, { useNewUrlParser: true });
+var {MONGO_DEV,MONGO_PROD} = require('./config/data');
+mongoose.connect(MONGO_DEV, { useNewUrlParser: true });
 
 var db = mongoose.connection;
 
