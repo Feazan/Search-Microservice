@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-var PostSchema = new Schema({
+const QuestionSchema = new Schema({
 	id: {
 		type: String,
 		unique: true
@@ -32,6 +32,7 @@ var PostSchema = new Schema({
 	viewed_users: [ String ]
 });
 
-var Post = mongoose.model('Post', PostSchema);
+// PostSchema.plugin(passportLocalMongoose);
+const Question = mongoose.model('Question', QuestionSchema);
 
-module.exports = Post;
+module.exports = Question;

@@ -2,9 +2,9 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-var Post = require('./models/post');
+var Question = require('./models/question');
 
-var {MONGO_DEV,MONGO_PROD} = require('./config/data');
+var { MONGO_DEV, MONGO_PROD } = require('./config/data');
 mongoose.connect(MONGO_DEV, { useNewUrlParser: true });
 
 var db = mongoose.connection;
@@ -47,7 +47,7 @@ app.post('/search', async (req, res, next) => {
 			var query = {
 				$or: [ { title: { $regex: regex_, $options: 'i' } }, { body: { $regex: regex_, $options: 'i' } } ]
 			};
-			const questions = await Post.find(query);
+			const questions = await Question.find(query);
 
 			console.log('IM HERE 1 ');
 			for (var i = 0; i < questions.length; i++) {
@@ -71,14 +71,14 @@ app.post('/search', async (req, res, next) => {
 		return res.send({ status: 'OK', questions: qRespArr });
 	} else if (req.body.timestamp) {
 		console.log(req.body.timestamp);
-		Post.find({ timestamp: { $lte: req.body.timestamp.toString() } })
+		Question.find({ timestamp: { $lte: req.body.timestamp.toString() } })
 			.sort('-timestamp')
 			.limit(limit)
 			.exec(function(err, question) {
 				if (err) {
 					console.log('There was an error');
 					console.log(err);
-					return res.send({ status: 'error', error: 'error' });
+					return res.status(400).send({ status: 'error', error: 'error' });
 				} else {
 					var retArr = [];
 					console.log(question);
@@ -102,11 +102,11 @@ app.post('/search', async (req, res, next) => {
 				}
 			});
 	} else {
-		Post.find().limit(limit).exec(function(err, question) {
+		Question.find().limit(limit).exec(function(err, question) {
 			if (err) {
 				console.log('There was an error');
 				console.log(err);
-				return res.send({ status: 'error', error: 'error' });
+				return res.status(400).send({ status: 'error', error: 'error' });
 			} else {
 				var retArr = [];
 				console.log(question);
