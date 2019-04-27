@@ -32,6 +32,7 @@ app.post('/search', async (req, res, next) => {
 	var has_media = req.body.has_media ? req.body.has_media : false; //default
 	var accepted = req.body.accepted ? req.body.accepted : false; // 
 	var tags = req.body.tags ? req.body.tags : undefined; //optional
+	console.log(limit + " " + q + " " + sortBy + " " + has_media + " " + accepted + " " + tags);
 	if (req.body.limit) {
 		console.log('Limit provided: ' + limit);
 		limit = req.body.limit;
@@ -244,7 +245,7 @@ app.post('/search', async (req, res, next) => {
 		console.log("matched this condidion optionals tags  were given all defaults are applied")
 		var resReturn = [];
         console.log(tags);
-		var resultSet = await Question.find({ tags: { $in: tags } }, '')
+		var resultSet = await Question.find({ tags:  tags  }, '')
 			.limit(limit)
 			.sort(sortBy)
 
