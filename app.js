@@ -60,7 +60,7 @@ app.post('/search', async (req, res, next) => {
 		for (var i = 0; i < q.split(" ").length; i++) {
 			var regex_ = new RegExp('\\b' + q.split(" ")[i] + '\\b');
 
-			var resultSet = await Question.find({ $and: [{ $or: [{ title: { $regex: regex_, $options: 'i' } }, { body: { $regex: regex_, $options: 'i' } }] }, { tags: { $in: tags } }, { "media.0": { "$exists": true } }, { accepted_answer_id: { $ne: null } }] }, '')
+			var resultSet = await Question.find({ $and: [{ $or: [{ title: { $regex: regex_, $options: 'i' } }, { body: { $regex: regex_, $options: 'i' } }] }, { tags:  tags  }, { "media.0": { "$exists": true } }, { accepted_answer_id: { $ne: null } }] }, '')
 				.limit(limit)
 				.sort(sortBy)
 
@@ -93,7 +93,7 @@ app.post('/search', async (req, res, next) => {
 	else if (!q && tags && has_media === true && accepted === true) {
 
 		var resReturn = [];
-		var resultSet = await Question.find({ $and: [{ tags: { $in: tags } }, { "media.0": { "$exists": true } }, { accepted_answer_id: { $ne: null } }] }, '')
+		var resultSet = await Question.find({ $and: [{ tags:  tags  }, { "media.0": { "$exists": true } }, { accepted_answer_id: { $ne: null } }] }, '')
 			.limit(limit)
 			.sort(sortBy)
 
@@ -111,7 +111,7 @@ app.post('/search', async (req, res, next) => {
 		for (var i = 0; i < q.split(" ").length; i++) {
 			var regex_ = new RegExp('\\b' + q.split(" ")[i] + '\\b');
 
-			var resultSet = await Question.find({ $and: [{ $or: [{ title: { $regex: regex_, $options: 'i' } }, { body: { $regex: regex_, $options: 'i' } }] }] }, '')
+			var resultSet = await Question.find({ $and: [{ $or: [{ title: { $regex: regex_, $options: 'i' } }, { body: { $regex: regex_, $options: 'i' } }] } , {tags : tags} ,{ accepted_answer_id: { $ne: null } } ] }, '')
 				.limit(limit)
 				.sort(sortBy)
 
@@ -129,7 +129,7 @@ app.post('/search', async (req, res, next) => {
 		for (var i = 0; i < q.split(" ").length; i++) {
 			var regex_ = new RegExp('\\b' + q.split(" ")[i] + '\\b');
 
-			var resultSet = await Question.find({ $and: [{ $or: [{ title: { $regex: regex_, $options: 'i' } }, { body: { $regex: regex_, $options: 'i' } }] }, { tags: { $in: tags } }] }, '')
+			var resultSet = await Question.find({ $and: [{ $or: [{ title: { $regex: regex_, $options: 'i' } }, { body: { $regex: regex_, $options: 'i' } }] }, { tags:  tags  }] }, '')
 				.limit(limit)
 				.sort(sortBy)
 
@@ -182,7 +182,7 @@ app.post('/search', async (req, res, next) => {
 		var resReturn = [];
 
 
-		var resultSet = await Question.find({ $and: [{ tags: { $in: tags } }, { "media.0": { "$exists": true } }] }, '')
+		var resultSet = await Question.find({ $and: [{ tags: tags  }, { "media.0": { "$exists": true } }] }, '')
 			.limit(limit)
 			.sort(sortBy)
 
@@ -196,7 +196,7 @@ app.post('/search', async (req, res, next) => {
 		var resReturn = [];
 
 
-		var resultSet = await Question.find({ $and: [{ tags: { $in: tags } }, { accepted_answer_id: { $ne: null } }] }, '')
+		var resultSet = await Question.find({ $and: [{ tags:  tags  }, { accepted_answer_id: { $ne: null } }] }, '')
 			.limit(limit)
 			.sort(sortBy)
 
