@@ -67,7 +67,7 @@ app.post('/search', async (req, res, next) => {
 				resReturn.push(resultSet[i].transform());
 			}
 
-			return res.send(resReturn);
+			return res.send({status: "OK" , questions : resReturn});
 		}
 	}
 	else if ((q && q != '') && !tags && has_media === true && accepted === true) {
@@ -85,7 +85,7 @@ app.post('/search', async (req, res, next) => {
 				resReturn.push(resultSet[i].transform());
 			}
 
-			return res.send(resReturn);
+			return res.send({status: "OK" , questions : resReturn});
 		}
 
 	}
@@ -100,7 +100,7 @@ app.post('/search', async (req, res, next) => {
 			resReturn.push(resultSet[i].transform());
 		}
 
-		return res.send(resReturn);
+		return res.send({status: "OK" , questions : resReturn});
 
 	}
 	else if ((q && q != '') && accepted === true && tags && has_media === false) {
@@ -118,7 +118,7 @@ app.post('/search', async (req, res, next) => {
 				resReturn.push(resultSet[i].transform());
 			}
 
-			return res.send(resReturn);
+			return res.send({status: "OK" , questions : resReturn});
 		}
 	}
 	else if ((q && q != '') && tags && accepted === false && has_media === false) {
@@ -136,7 +136,7 @@ app.post('/search', async (req, res, next) => {
 				resReturn.push(resultSet[i].transform());
 			}
 
-			return res.send(resReturn);
+			return res.send({status: "OK" , questions : resReturn});
 		}
 	}
 	else if ((q && q != '') && !tags && accepted === false && has_media === true) {
@@ -154,7 +154,7 @@ app.post('/search', async (req, res, next) => {
 				resReturn.push(resultSet[i].transform());
 			}
 
-			return res.send(resReturn);
+			return res.send({status: "OK" , questions : resReturn});
 		}
 
 	}
@@ -173,7 +173,7 @@ app.post('/search', async (req, res, next) => {
 				resReturn.push(resultSet[i].transform());
 			}
 
-			return res.send(resReturn);
+			return res.send({status: "OK" , questions : resReturn});
 		}
 
 	}
@@ -189,7 +189,7 @@ app.post('/search', async (req, res, next) => {
 			resReturn.push(resultSet[i].transform());
 		}
 
-		return res.send(resReturn);
+		return res.send({status: "OK" , questions : resReturn});
 	}
 	else if (!q && tags && accepted === true && has_media === false) {
 		var resReturn = [];
@@ -203,7 +203,7 @@ app.post('/search', async (req, res, next) => {
 			resReturn.push(resultSet[i].transform());
 		}
 
-		return res.send(resReturn);
+		return res.send({status: "OK" , questions : resReturn});
 
 	}
 	else if (!q && !tags && accepted === true && has_media === true) {
@@ -219,7 +219,7 @@ app.post('/search', async (req, res, next) => {
 			resReturn.push(resultSet[i].transform());
 		}
 
-		return res.send(resReturn);
+		return res.send({status: "OK" , questions : resReturn});
 	}
 	else if (q && q != '') {
 		console.log("matched this condidion optionals q  were given all defaults are applied")
@@ -236,7 +236,7 @@ app.post('/search', async (req, res, next) => {
 				resReturn.push(resultSet[i].transform());
 			}
 
-			return res.send(resReturn);
+			return res.send({status: "OK" , questions : resReturn});
 		}
 
 	} else if (tags) {
@@ -252,7 +252,7 @@ app.post('/search', async (req, res, next) => {
 			resReturn.push(resultSet[i].transform());
 		}
 
-		return res.send(resReturn);
+		return res.send({status: "OK" , questions : resReturn});
 
 
 	} else if (has_media === true) {
@@ -266,7 +266,7 @@ app.post('/search', async (req, res, next) => {
 			resReturn.push(resultSet[i].transform());
 		}
 
-		return res.send(resReturn);
+		return res.send({status: "OK" , questions : resReturn});
 	}
 	else if (accepted === true) {
 		console.log("Only accepted flag was given")
@@ -280,7 +280,7 @@ app.post('/search', async (req, res, next) => {
 			resReturn.push(resultSet[i].transform());
 		}
 
-		return res.send(resReturn);
+		return res.send({status: "OK" , questions : resReturn});
 	}else{
         if(!req.body){
 			console.log("no paramaters given" + req.body);
@@ -294,7 +294,7 @@ app.post('/search', async (req, res, next) => {
 			resReturn.push(resultSet[i].transform());
 		}
         console.log(resReturn.length)
-		return res.send(resReturn);
+		return res.send({status: "OK" , questions : resReturn});
 
 	}
 
