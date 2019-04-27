@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
 
 app.post('/search', async (req, res, next) => {
 	console.log("Search routee..........")
-	console.log("parameters given !!!!!!!")
+	console.log("parameters given !!!!!!!" + "\n" + req.body);
 	var limit = 25; //default
 	var q = req.body.q ? req.body.q : null //optiona;
 	// var timeStamp = now(); //default
@@ -243,7 +243,7 @@ app.post('/search', async (req, res, next) => {
 
 		console.log("matched this condidion optionals tags  were given all defaults are applied")
 		var resReturn = [];
-
+        console.log(tags);
 		var resultSet = await Question.find({ tags: { $in: tags } }, '')
 			.limit(limit)
 			.sort(sortBy)
