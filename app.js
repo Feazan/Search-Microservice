@@ -44,9 +44,9 @@ app.post('/search', async (req, res, next) => {
 		}
 	}
 
-	if (req.body.timeStamp) {
-		timeStamp = now();
-	}
+	// if (req.body.timeStamp) {
+	// 	timeStamp = now();
+	// }
 
 	if (req.body.sort_by === "timestamp") {
 		sortBy = { timestamp: -1 }
